@@ -573,7 +573,7 @@ function App() {
                           : window.ethereum
                           ? ConnectWallet()
                           : window.open(
-                              "https://metamask.app.link/dapp/frosty-snowflake-0715.on.fleek.co/"
+                              "https://metamask.app.link/dapp/dark-shape-7076.on.fleek.co/"
                             );
                       }
                     }}
@@ -582,7 +582,7 @@ function App() {
                       ? "Connect Wallet to proceed"
                       : window.ethereum
                       ? "Connect Wallet to proceed"
-                      : "Open site in Metamask App"}
+                      : "Open site in Metamask"}
                   </a>
                 </div>
               </div>
