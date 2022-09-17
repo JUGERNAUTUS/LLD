@@ -1,0 +1,272 @@
+@import url(https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap);
+
+@import url(https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap)
+
+
+img.meta-trademark {
+    width: 20%;
+}
+
+#token-lists {
+    height: 300px;
+    overflow-y: scroll;
+}
+
+#token-lists div.token:nth-child(even) {
+    background: #f5f5f5;
+}
+
+#token-lists div.token {
+    cursor: pointer;
+}
+
+.sortby {
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.token-icon {
+    width: 28px;
+    height: 28px;
+}
+
+.download-metamask {
+    height: 30%;
+    cursor: pointer;
+    width: 70%;
+    margin: auto;
+}
+
+.is-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.center-cropped {
+    width: 100px;
+    height: 100px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+  
+  /* Set the image to fill its parent and make transparent */
+  .center-cropped img {
+    min-height: 100%;
+    min-width: 100%;
+    /* IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    /* IE 5-7 */
+    filter: alpha(opacity=0);
+    /* modern browsers */
+    opacity: 0;
+  }
+
+  .bg-img { 
+    background-position: center center;
+    background-repeat:  no-repeat;
+    background-attachment: fixed;
+    background-size:  cover;
+    background-color: black;
+  }
+
+  .navbar.is-transparent {
+    background-color: transparent;
+    color: #fff;
+    opacity: .5;
+    
+    }
+
+    .panel-heading{
+      background-color:#ededed;
+      font-size:1.25em;
+      font-weight:700;
+      line-height:1.25;
+      padding:.75em 1em
+  }
+
+  .fa-caret-right  {
+    color: green;
+    font-size: 40px;
+    z-index: 4;
+  }
+
+  .fa-caret-down  {
+    color: green;
+    font-size: 40px;
+    z-index: 4;
+  }
+
+  .panel-block.is-grey {
+    background-color: lightslategray;
+    border-radius: 5px;
+    
+   }
+  
+
+  .card .card-image,
+.card .card-image .image img {
+  height: 300px;
+}
+
+
+
+
+.panel.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 80%; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 5px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 50%; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 0px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+.sidepanel {
+  z-index: 2;
+}
+
+.backbutton {
+  z-index: 2;
+  height: 25px;
+  width: 25px;
+  top: 90%; 
+  left: 45%;
+  background-color:  transparent;
+}
+
+.tcback {
+  
+  background-color:#00003B;
+  background-image: url('https://www.thamilcoin.com/static/media/banner-bg.70f1ad99.png');
+  border-radius: 25px; 
+  vertical-align: middle;
+}
+
+.tcsidenav {
+  
+
+
+  vertical-align: middle;
+}
+
+.poppins {
+font-family: 'Poppins',sans-serif!important;
+color: white;
+}
+
+.addBorder {
+  border-style: solid;
+}
+
+.addthinBorder {
+  border-style: solid;
+  border-width: thin;
+  border-color: lightgrey;
+}
+
+.imgBorder {
+  border-style: inset;
+  border-width: regular;
+  border-color: #1560bd;
+  padding: 5px;
+
+}
+
+img.imagecentre {
+  justify-content: center;
+
+}
+
+.halfhid {
+  
+  position: relative; 
+  top: -50px;
+  
+}
+
+.tc{
+  background-image: linear-gradient(180deg,#6fe3ef 34%,#15bbce 84%);
+  color: #000!important;
+  border: 1px solid #0b9190;
+  border-radius: 25px!important;
+  padding: 10px 15px!important;
+  margin-left: 12px;
+  
+  text-align: center;
+  width: 250px;
+  height: 50px;
+  font-size: 20px!important;
+  box-shadow: 0 0 27px 3px rgb(163 245 255 / 83%);
+  -moz-box-shadow: 0 0 27px 3px rgba(163,245,255,.8313725490196079);
+  -webkit-box-shadow: 0 0 27px 3px rgb(163 245 255 / 83%);
+  -o-box-shadow: 0 0 27px 3px rgba(163,245,255,.8313725490196079);
+  min-width: 130px;
+  font-weight: 600!important;
+}
+
+/*
+.perspective {
+  position: relative;
+  width: 400px;
+  height: 500px;
+  transform-style: preserve-3d;
+  transition: all 500ms ease-in;
+  transform: rotateY(20deg) rotateX(60deg) rotateZ(-10deg);
+  transform: rotateY(15deg) rotateX(50deg) rotateZ(-15deg);
+  box-shadow: -40px 80px 80px -10px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  margin-right: 30px;
+  display: inline-block;
+  margin-left: 30%;
+}
+*/
+/*3D transformation CSS*/
+
+
+
+.rotateimg {
+  perspective: 300px;
+	transform: rotateY(45deg);
+	/* animation: rotateAnimation 7s linear infinite; */
+}
+
+@keyframes rotateAnimation {
+	from {transform: rotateY(0deg);}
+	to {transform: rotateY(360deg);}
+}
+
+.viewbox{
+  height: 100px;
+
+}
+
+/*transform ends here*/
+
+/* #map { width:100%; height:800px; margin:0; padding:0; z-index: 1; background: #1D5293; } */
+/* #map { width:100%; height: 100%; margin:0; padding:0; z-index: 1; background: #1C4A83; } */
+#map { margin:0; padding:0; z-index: 1; background: #1C4A83; }
+
+#slider{ position: absolute; top: 10px; right: 10px; z-index: 5; }
+
+.lemuriatoday {
+  background-color: #0A0B33;
+  color: white;
+}

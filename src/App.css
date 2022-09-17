@@ -1,0 +1,230 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.bg-img {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: black;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.navbar-item:hover {
+  background: none;
+  color: rgb(31, 205, 224);
+}
+
+.grey-box {
+  background-color: rgb(255, 255, 255);
+  border-radius: 15px;
+}
+
+.column-gap {
+  column-gap: 20px;
+}
+
+.custom-align {
+  display: flex;
+  align-items: center;
+}
+
+.remove-link-decor {
+  text-decoration: none;
+  color: white;
+}
+
+.remove-link-decor:hover {
+  color: white;
+}
+
+.matic-message {
+  display: flex;
+  font-size: 15px;
+  justify-content: center;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  text-align: center;
+}
+
+.mobile-message {
+  display: flex;
+  justify-content: center;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.mobile-message-override {
+  display: flex;
+  align-items: center;
+}
+
+.ext-logos {
+  height: 110px;
+  width: 110px;
+}
+
+.mobile-outer-div-one {
+}
+
+.mobile-outer-div-two {
+}
+
+@media only screen and (max-device-width: 768px) {
+  .mobile-outer-div-one {
+    width: max-content;
+  }
+
+  .mobile-outer-div-two {
+    width: inherit;
+    display: flex;
+  }
+
+  .mobile-modal-content {
+    display: flex;
+    text-align: center;
+  }
+
+  .mobile-connect-wallet-column {
+    display: flex;
+    justify-content: center;
+  }
+
+  .mobile-connect-wallet-button {
+    width: fit-content;
+  }
+
+  .mobile-secondmap-back-button {
+    display: flex;
+    justify-content: center;
+  }
+
+  .mobile-transaction-modal {
+    display: flex;
+    text-align: center;
+  }
+
+  .mobile-side-wallet-width {
+    width: 80%;
+  }
+
+  .mobile-successful-modal {
+    width: fit-content;
+    display: flex;
+  }
+
+  .mobile-successful-modal-section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-successful-modal-text {
+    text-align: center;
+  }
+}
+
+.switchbutton {
+  top: 0;
+  /* right: 0; */
+  /* left: 0; */
+  /* position: fixed; */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.lemuriatoday {
+  width: 100%;
+  height: 100%;
+}
+
+.switchlayout {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  margin: 10px;
+  color: #00b4c7;
+  background-color: #00003b;
+  font-weight: 900;
+  border: none;
+}
+
+.switchlayout:hover {
+  color: white;
+}
+
+.my-label {
+  position: absolute;
+  font-size: 15px;
+  background-color: white;
+  background: none;
+  opacity: 0;
+  border: none;
+  font-weight: 700;
+  box-shadow: none;
+  color: white;
+}
+
+.lemuria-label {
+  position: absolute;
+  font-size: 20px;
+  background-color: white;
+  background: none;
+  opacity: 0;
+  border: none;
+  font-weight: 700;
+  box-shadow: none;
+  color: white;
+}
+
+.city-label {
+  font-size: 10px;
+  background-color: white;
+  background: none;
+  opacity: 0;
+  border: none;
+  font-weight: 700;
+  box-shadow: none;
+  color: white;
+}

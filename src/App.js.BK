@@ -1,0 +1,706 @@
+import React, { useState, useEffect } from "react";
+import './App.css'
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
+import ReactCSSTransitionGroup from 'react-transition-group';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import 'bulma/css/bulma.min.css';
+
+import Web3 from 'web3'
+import Nav from './components/reactComponents/Navbar'
+
+
+
+
+import HomePage from './components/reactComponents/HomePage'
+import HomePagealt from './components/reactComponents/HomePagealt'
+import Map from './components/reactComponents/HighMap/Map'
+
+import axios from "axios";
+
+
+
+function App() {
+
+
+  const params = { address: 'address' };
+
+  const [appState, setAppState] = useState({
+    //protonAddress: '0x8e9a2057Dfe4dBb98A69B8daed5A8E3867e5b6d7',
+    //valAddress: '0x753941E8fA3e26E501cd8327f5EB621c8b4e2583',
+    protonAddress: '0xbf3d3d199f04dbEb578250B1111361e25bEE7335',
+    valAddress: '0xAC7bC4B424Dad961c63Fe6F165aFDFD58f6A4cC6',	  
+    modalIsActive: true,
+	  extModal:false,
+    backend: 'https://sb-api.quantlabs.technology/',
+    watchweb3: new Web3(new Web3.providers.WebsocketProvider('wss://speedy-nodes-nyc.moralis.io/833cf87df6d280847ac4787c/polygon/mumbai/ws')),
+    account: "0x0000000000000000000000000000000000000000",
+    isWeb3: false,
+    walletOpen: false,	  
+    width: "0%",
+    nftView: 1,
+    nfts: ["download.jpg","download.jpg","download.jpg","download.jpg","download.jpg"]
+  })
+  const [allUrlParams, setallUrlParams] = useState({})
+  const [siteData, setsiteData] = useState({ site: [], isValidator: false })
+
+  const [web3, setweb3] = useState({
+    web3: "",
+    account: "0x0000000000000000000000000000000000000000",
+    isWeb3: false
+  })
+
+  const activateModal = () => {
+    console.log('amod called', appState)
+    setAppState(prevState => {
+      return {
+        ...prevState,
+        modalIsActive: !appState.modalIsActive
+      }
+    })
+  };
+
+  const walletChange = () => {
+    
+    setAppState(prevState => {
+      return {
+        ...prevState,
+        walletOpen: !appState.walletOpen,
+        width:" 30%"
+      }
+    })
+  };
+
+  const switchNFT = (index) => {
+    
+    setAppState(prevState => {
+      return {
+        ...prevState,
+        nftView: index
+      }
+    })
+  };
+
+	const profileModal = (width) => {
+
+    //let width = appState.width;
+    
+    console.log("Width",width);
+    
+    const openedStyle = {
+      width: '30%' /* width is 30% when the drawer is opened */,
+    };
+
+    const closedStyle = {
+      width: '0%' /* width is 0% when the drawer is opened */,
+    };
+/*
+    const walletOpen ={{
+      borderTopLeftRadius: "0px",
+      borderBottomLeftRadius: "0px",
+      borderTopRightRadius: "25px",
+      borderBottomRightRadius: "25px",
+      {appState.walletOpen ? openedStyle : closedStyle}>
+}}*/
+    return (
+      <div className="column sidepanel is-overlay is-2">
+      <div className="columns is-overlay is-vcentered">
+      <div className="column">
+       
+         
+    <div className="columns is-multiline is-vcentered"
+    >
+
+   <article class="panel sidenav has-text-centered has-background-white" 
+   style={appState.walletOpen ? openedStyle : closedStyle}>
+   
+  
+   {
+   appState.walletOpen ?
+   <div>  
+         <a
+                      className="button is-info "
+                      onClick={() => {
+                        walletChange();
+                      }}
+                    >
+                      Close
+                      
+                    </a>
+                    <br></br><br></br>                    
+   <p class="panel-heading has-background-info has-text-white title is-4">
+     Makkal Wallet
+  </p>
+
+  <div class="panel-block ">  
+  <div className = "columns is-multiline is-centered is-vcentered">
+  <div className = "column is-12 has-text-centered">
+  <h1 className="title is-4">Account</h1>
+  </div>
+  <div className = "column has-text-centered is-12">
+  {web3.account}
+  
+  </div>
+  <div className = "column has-text-centered is-12">
+
+  </div>
+  </div>
+  </div> 
+
+  
+
+
+  <div class="panel-block ">
+  <div className = "columns is-multiline is-centered is-vcentered">
+  <div className = "column is-12 has-text-centered">  
+   <div className = "column is-4 is-offset-9 has-text-centered">
+  <figure className="image">
+  <img  
+    style={({ height: "250px" }, { width: "250px" })}
+    src="TC.png">
+    </img>
+  </figure>
+  <br></br>
+  </div>
+  
+  <h1 className="title is-4">15 LLD</h1>  
+   
+  </div>
+  </div>   
+  </div>   
+  
+  
+  <div class="panel-block ">  
+  <div className = "columns is-multiline is-centered is-vcentered">
+  
+  <div className = "column is-12 has-text-centered has-text-white">
+  {web3.account}
+  </div>
+  <div className = "column has-text-centered  is-12">
+  <h1 className="title is-4">Last 5 LLDs bought</h1> 
+  </div>
+  
+  
+  <div className = "column has-text-centered  is-2"> 
+  <figure className="image"> 
+  <a onClick={() => {
+                        switchNFT(0);
+                      }}>
+    <img  
+    style={({ height: "250px" }, { width: "250px" })}
+    src = {appState.nfts[0]}>
+    </img>
+  </a>
+  </figure> 
+  </div>
+  
+  
+  
+  <div className = "column has-text-centered  is-2">
+  <figure className="image">
+  <a onClick={() => {
+                        switchNFT(1);
+                      }}>
+  <img  
+    style={({ height: "250px" }, { width: "250px" })}
+    src={appState.nfts[1]}>
+  </img>
+  </a>
+  </figure> 
+  </div>
+  
+  
+  
+  <div className = "column has-text-centered  is-2">
+  <figure className="image">
+  <a onClick={() => {
+                        switchNFT(2);
+                      }}>
+    <img  
+    style={({ height: "250px" }, { width: "250px" })}
+    src={appState.nfts[2]}>
+    </img>
+  </a>  
+  </figure> 
+  </div>
+  
+  
+  
+  <div className = "column has-text-centered  is-2">
+  <figure className="image">
+  <a onClick={() => {
+                        switchNFT(3);
+                      }}>
+    <img  
+    style={({ height: "250px" }, { width: "250px" })}
+    src={appState.nfts[3]}>
+    </img>
+  </a>  
+  </figure> 
+  </div>
+  
+  
+  
+  <div className = "column has-text-centered  is-2">
+  <figure className="image">
+  <a onClick={() => {
+                        switchNFT(4);
+                      }}>
+  <img  
+    style={({ height: "250px" }, { width: "250px" })}
+    src={appState.nfts[4]}>
+    </img>
+    </a>  
+  </figure> 
+  </div>
+  
+  
+  </div>
+  </div>
+
+  <div className = "panel block">
+  <div className = "column has-text-centered  ">
+  <figure className="image">
+  <img  
+    style={({ height: "500px" }, { width: "500px" })}
+    src={appState.nfts[appState.nftView]}>
+    </img>
+  </figure> 
+  </div>
+  </div>
+
+
+  </div>:
+  <div></div>
+}  
+</article>
+    
+        <div class="box"
+             style={{
+                    borderTopLeftRadius: "0px",
+                    borderBottomLeftRadius: "0px",
+                    borderTopRightRadius: "25px",
+                    borderBottomRightRadius: "25px",
+                  
+        }}>
+          <a onClick={() => {
+                        walletChange();
+                      }}>
+
+
+          <FontAwesomeIcon icon="fa-solid fa-wallet" size="2x" />
+          </a>
+        </div>
+        </div>  
+  
+        </div> 
+    </div>  
+    </div>
+   
+         )
+  }	
+
+  const walletModal = () => {
+    console.log(appState.isWeb3,"isWeb3");
+    return (
+      
+      <div className={appState.isWeb3 ? "modal " : "modal is-active"}>
+          <div class="modal-content ">
+            <div class="modal-card">
+              
+              <section
+                class="modal-card-body glowBorder tcback"  
+              >
+  
+                <br></br>
+                <div className="columns is-centered is-vcentered ">
+  
+                <div className="title is-3 poppins ">Welcome to Lemuria!</div>    
+              
+                </div>
+                <br></br><br></br><br></br>
+  
+                <div className="columns is-centered is-vcentered ">
+                  <div classname="column">
+                    <a
+                      className="btn get-started-btn-1 ml-0 mb-3"
+                      onClick={() => {
+                        ConnectWallet();
+                      }}
+                    >
+                      Connect Wallet to proceed
+                    </a>
+                  </div>
+  
+                </div>
+  
+                <br></br><br></br>
+
+                <div className="columns is-centered">
+                </div>
+
+                <div className="columns is-centered"
+                >
+                  <div className="column is-3 has-text-centered" 
+                  > 
+                  Powered by 
+                 
+                  <img
+  
+                    src="TClogo.png"
+  
+                    style={({ height: "200px" }, { width: "300px" })}
+                  ></img>
+                  </div>
+                  
+                </div>
+            
+              </section>
+             
+            </div>
+          </div>
+      </div>
+        
+    )
+    
+  }
+
+
+
+  const urlParser = () => {
+
+
+    //const { address } = useParams()
+    //const queryParams = new URLSearchParams(window.location.search);
+
+    //const address = queryParams.get('address');
+
+    //console.log(address, "address");
+
+    // url parsing
+    //var params = { address:''};
+
+    let parser = document.createElement('a');
+    let href = window.location.href;
+
+    const paramsArray = href.split("/");
+
+    const linkEnd = paramsArray[paramsArray.length - 1]
+
+    //const queryParams = new URLSearchParams(window.location.search);
+    //console.log("queryParams",queryParams);
+    //const address = queryParams.get('address');
+    //let query = parser.search.substring(1);
+    //console.log("query",query,parser.href,parser);
+    //params.address = decodeURIComponent(query);
+
+
+    setallUrlParams(prevState => {
+      return {
+        ...prevState,
+        linkEnd: linkEnd
+      }
+    })
+  }
+
+
+  const ConnectWallet = () => {
+    console.log("Reached wallet", window.ethereum);
+    if (window.ethereum) {
+      appState.isWeb3 = true;
+      const ethereum = window.ethereum;
+
+      let web3 = new Web3(ethereum);
+
+      ethereum.enable().then((accounts) => {
+        let account = accounts[0];
+        web3.eth.defaultAccount = account;
+        console.log(account, appState);
+        setweb3(prevState => {
+          return {
+            ...prevState,
+            isWeb3: true,
+            account: web3.utils.toChecksumAddress(accounts[0]),
+            web3: web3
+          }
+        });
+
+        setAppState((prevState) => {
+          return {
+            ...prevState,
+            modalIsActive: false
+          };
+        });
+
+        switchNetworkMumbai(account, web3);
+
+      });
+    }
+  };
+
+  const handleSignMessage = (publicAddress, web3) => {
+
+    //const server = "localhost:5000";
+    console.log("address",publicAddress);
+    var url = appState.backend + "getAuthToken";
+
+    var params = JSON.stringify({
+      address: publicAddress
+    });
+
+
+    fetch(url, {
+      method: "POST",
+      mode: "cors",
+
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: params,
+    })
+      .then(function (response, error) {
+        if (response) {
+          return response.json();
+        } else {
+          console.log(error);
+        }
+      })
+      .then(function (data) {
+        console.log("token",data.token,data.status);
+      let nonce = data.token;
+      let status = data.status;
+     
+     
+     if(status == "new")
+     {	      
+     web3.eth.personal.sign(
+      web3.utils.utf8ToHex
+
+
+							  
+								 
+								
+
+      (`Welcome to Scambuster! 
+        
+Click to sign in. This authentication is valid for 24 hours 
+        
+This request will not trigger a blockchain transaction or cost any gas fees. 
+
+Wallet address: 
+${publicAddress} 
+        
+Nonce:
+${nonce}`),
+        publicAddress
+      ).then(function(response,error){
+         if(response)
+	      {
+		console.log("signature",response)
+                updateToken(publicAddress,nonce,response);      
+
+	      }
+	      else
+	      {
+	        console.log(error)
+             }
+    
+  });
+
+			 
+
+				 
+  }
+	  else
+    {
+		  setAppState(prevState => {
+  			return {
+  		          ...prevState,
+  			token: nonce
+                        }
+                      });
+      }                 
+	      
+  });
+ }
+											
+  const updateToken = (publicAddress, token, sig) => {
+
+  //const server = "localhost:5000";
+  console.log("address",publicAddress);
+  var url = appState.backend + "addAuthToken";
+
+  var params = JSON.stringify({
+    address: publicAddress,
+    nonce: token,
+    sig: sig	  
+  });
+
+								 
+							 
+				  
+	   
+
+  fetch(url, {
+    method: "POST",
+    mode: "cors",
+
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: params,
+  })
+    .then(function (response, error) {
+      if (response) {
+        return response.json();
+      } else {
+        console.log(error);
+      }
+    })
+    .then(function (data) {
+      console.log("update response",data);
+
+      setAppState(prevState => {
+  			return {
+  		          ...prevState,
+  			token: token
+                        }
+                      });
+    })
+										
+					   
+								 		
+  }
+
+
+
+  const switchNetworkMumbai = (account, web3) => {
+    //const ethereum = window.ethereum;
+    //let web3 = new Web3(ethereum);
+    //let web3 = appState.web3;	
+    web3.currentProvider
+      .request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: "0x13881" }],
+      })
+      .then(function (resonse, error) {
+        console.log("account here", account);
+        if (error) alert(error.message);
+        //else handleSignMessage(account, web3);
+      });
+  };
+
+
+
+  // const ConnectWallet = () => {
+
+  //   console.log('Calling ConnectWallet...')
+
+  //   //console.log("Reached wallet",window.ethereum)
+
+  //   if (window.ethereum) {
+
+  //     //app.state.isWeb3 = true;
+  //     const ethereum = window.ethereum;
+
+  //     let web3 = new Web3(ethereum);
+
+  //     //this.web3 = web3;
+
+  //     ethereum.enable().then((accounts) => {
+  //       //let account = accounts[0];
+  //       //web3.eth.defaultAccount = account ;
+  //       //console.log ( account);
+  //       /*
+  //       app.setState({
+  //          account : account,
+  //          web3 : this.web3
+  //        });*/
+  //       console.log('accounts', accounts);
+  //       setweb3(prevState => {
+  //         return {
+  //           ...prevState,
+  //           isWeb3: true,
+  //           account: web3.utils.toChecksumAddress(accounts[0]),
+  //           web3: web3
+  //         }
+  //       });
+
+
+  //     })
+  //   }
+  // }
+
+  const checkFunc = () => {
+    console.log('cf called')
+    axios.post(appState.backend + 'verifytoken', { address: web3.account.toLowerCase() }).then(function (response, error) {
+      if (response) {
+        console.log("response", response)
+      } else {
+        console.log('error', error)
+      }
+    }).catch(function (error) {
+      if (error.response) {
+        console.log('err', error.response.status)
+      }
+    })
+  }
+
+  useEffect(() => {
+    console.log("window",window);
+
+    setAppState(prevState => {
+      return {
+        ...prevState,
+        L: window.L
+      }
+    })
+   },[])
+
+  return (
+    <>
+      <BrowserRouter>
+	
+        {<Nav
+          appState={appState}
+          setAppState={setAppState}
+          walletModal={walletModal}
+          activateModal={activateModal}
+          ConnectWallet={ConnectWallet}
+          isWeb3={web3.isWeb3}
+          web3={web3.web3}
+          account={web3.account}
+	    
+  />}
+	  <div className="">
+        <Routes>
+          <Route path="/" element={<HomePagealt
+            appState={appState}
+            setAppState={setAppState}
+            siteData={siteData}
+            setsiteData={setsiteData}
+            isWeb3={web3.isWeb3}
+            web3={web3.web3}
+            account={web3.account}
+            walletModal={walletModal}
+            width={appState.width}
+            profileModal={profileModal}
+          />} />
+{
+<Route path="/map" element={<Map
+          L={appState.L}
+          />} />}
+
+
+          {/* web3={appState.web3} />} /> */}
+
+        </Routes>
+	  </div>
+	  
+      </BrowserRouter>
+    </>
+  );
+}
+
+export default App;
